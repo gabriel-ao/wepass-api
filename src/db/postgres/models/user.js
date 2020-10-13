@@ -2,11 +2,11 @@ const Sequelize = require('sequelize')
 
 module.exports = {
   name: 'users',
-  constructor: {
+  schema: {
     id: {
-      type: Sequelize.STRING,
+      type: Sequelize.INTEGER,
       primaryKey: true,
-      required: true,
+      autoIncrement: true,
     },
     firstName: {
       type: Sequelize.STRING,

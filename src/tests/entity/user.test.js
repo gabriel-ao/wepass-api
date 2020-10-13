@@ -14,7 +14,7 @@ const USER_MOCK = {
 describe('Case test User', function () {
   it('Create a user', async () => {
     const response = await User(USER_MOCK)
-    exists(response.id)
+    exists(response.email)
   })
   it('Not create a user - incomplete name', async () => {
     const _USER_MOCK = { ...USER_MOCK, firstName: 'g' }

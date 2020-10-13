@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid')
 const { required } = require('@hapi/joi')
 // const { ENTITY_VALIDATOR_BUSINESS } = require('../utils/validators')
 const Joi = require('@hapi/joi')
@@ -14,7 +13,6 @@ const schema = Joi.object({
 
 async function User({ firstName, lastName, roles, email, password, active }) {
   let _user = {}
-  _user.id = uuidv4()
   _user.firstName = firstName
   _user.lastName = lastName
   _user.roles = roles

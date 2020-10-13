@@ -1,5 +1,7 @@
-const model = require('../db/postgres/models/user')
-const Postgres = require('../db/postgres')
+// const model = require('../db/postgres/models/user')
+// const Postgres = require('../db/postgres')
+const model = require('../db/mongodb/models/user')
+const MongoDB = require('../db/mongodb')
 const Strategy = require('../db/base/strategy')
 const IRepository = require('./IRepository')
 
@@ -8,7 +10,7 @@ class UserRepository extends IRepository {
     super()
     this.connection = connection
 
-    this.db = new Strategy(new Postgres(this.connection, model))
+    this.db = new Strategy(new MongoDB(this.connection, model))
   }
 }
 
