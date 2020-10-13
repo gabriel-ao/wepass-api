@@ -1,15 +1,11 @@
 const { required } = require('@hapi/joi')
-// const { ENTITY_VALIDATOR_BUSINESS } = require('../utils/validators')
+const PasswordHelper = require('../utils/PasswordHelper')
+const { ENTITY_VALIDATOR_USER } = require('../utils/validators')
 const Joi = require('@hapi/joi')
 
-const schema = Joi.object({
-  firstName: Joi.string().min(3).max(40).required(),
-  lastName: Joi.string().min(3).max(40).required(),
-  roles: Joi.string().min(3).max(40).required(),
-  email: Joi.string().email().required(),
-  password: Joi.string().alphanum().min(8).max(30).required(),
-  active: Joi.boolean(),
-})
+const schema = ENTITY_VALIDATOR_USER
+
+const passwordHelper = new PasswordHelper(6)
 
 async function User({ firstName, lastName, roles, email, password, active }) {
   let _user = {}
@@ -40,6 +36,7 @@ async function User({ firstName, lastName, roles, email, password, active }) {
     }
   }
 
+  _user.password = await passwordHelper.encrypt(password)
   return _user
 }
 

@@ -2,14 +2,7 @@ const User = require('../../entity/user')
 
 const { exists } = require('chai').assert
 
-const USER_MOCK = {
-  firstName: 'Bito ',
-  lastName: 'de oliveira',
-  roles: 'fornecedor',
-  email: 'gabrielao.developer@gmail.com',
-  password: 'gabigol10',
-  active: true,
-}
+const { USER_MOCK } = require('../../utils/mocks')
 
 describe('Case test User', function () {
   it('Create a user', async () => {
