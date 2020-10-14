@@ -11,6 +11,7 @@ class MongoDB extends ICrud {
   }
 
   static connect({ db }) {
+    // console.log('veficando conexao em mongodb index', db)
     Mongoose.connect(
       `${process.env.MONGO_URI}${db}`,
       {

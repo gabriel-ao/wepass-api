@@ -6,15 +6,26 @@ const { REQUEST_VALIDATOR_USER } = require('../utils/validators')
 const userRouter = express.Router()
 
 // POST
-userRouter.post('/user', 
-celebrate({ 
-    [Segments.BODY]: REQUEST_VALIDATOR_USER 
-})
-UserController.create
+userRouter.post(
+  '/user',
+  celebrate({
+    [Segments.BODY]: REQUEST_VALIDATOR_USER,
+  }),
+  UserController.create
 )
+
 // GET
+userRouter.get('/user', UserController.getByEmail)
+userRouter.get('/user/:id', UserController.getById)
+
 // PATCH
+userRouter.patch('/user/:id/deactivate', UserController.deactivate)
+userRouter.patch('/user/:id/activate', UserController.activate)
+
 // PUT
+userRouter.put('/user/:id', UserController.update)
+
 // DELETE
+userRouter.delete('/user/:id', UserController.delete)
 
 module.exports = userRouter
