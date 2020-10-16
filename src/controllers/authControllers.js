@@ -10,19 +10,22 @@ const connection = MongoDB.connect({
 
 const repository = new UserRepository(connection)
 
-const PasswordHelper = new PasswordHelper(6)
+const passwordHelper = new PasswordHelper(6)
 
 class AuthController {
   async login(req, res) {
-    const _email = req.body._email
-    const _password = req.body.PasswordHelper
+    const _email = req.body.email
+    const _password = req.body.password
     const [login] = await repository.findByEmail(_email)
 
+    console.log('email ==>>>', _email)
+    console.log('password ==>>>', _password)
     if (!login) {
       return res.boom.badRequest('Usuario não existe')
     }
+    console.log('login ==>>>', login)
 
-    const result = await PasswordHelper.compare(_password, login.password)
+    const result = await passwordHelper.compare(_password, login.password)
 
     if (!result) return res.boom.unauthorized('Login ou senha invalida')
 

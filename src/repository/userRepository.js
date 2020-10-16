@@ -12,6 +12,26 @@ class UserRepository extends IRepository {
 
     this.db = new Strategy(new MongoDB(this.connection, model))
   }
+
+  // metodos próprios
+
+  async findByEmail(email) {
+    return await this.db.read({ email: email })
+  }
+
+  async activate(id) {
+    const result = await this.db.findAndModify({ id: id }, { active: true })
+    return result
+  }
+
+  async deactivate(id) {
+    const result = await this.db.findAndModify({ id: id }, { active: false })
+    return result
+  }
+
+  async updateLastLogin(id) {
+    return await this.db.update(id, { lastLogin: Date.now() })
+  }
 }
 
 module.exports = UserRepository
