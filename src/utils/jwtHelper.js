@@ -10,7 +10,7 @@ class JwtHelper {
 
   static verify(token) {
     const _verify = jwt.verify(token, process.env.JWT_KEY)
-    return _verify.decoded
+    return _verify
   }
 }
 

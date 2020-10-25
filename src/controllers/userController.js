@@ -9,8 +9,10 @@ const repository = new UserRepository(connection)
 class UserController {
   // POST
   async create(req, res) {
-    const _email = req.body._email
-    const [verify] = await repository.findAndModify(_email)
+    console.table(req.body)
+    const _email = req.body.email
+    const [verify] = await repository.findByEmail(_email)
+    console.log(verify)
     if (verify) {
       return res.boom.badRequest('Usuario ja existe')
     }
@@ -30,7 +32,7 @@ class UserController {
   }
 
   async getById(req, res) {
-    const _id = req.params.id
+    const _id = req.id
     const [verify] = await repository.findById(_id)
     if (!verify) {
       return res.boom.notFound()
@@ -40,7 +42,7 @@ class UserController {
   // PATCH
 
   async deactivate(req, res) {
-    const _id = req.params.id
+    const _id = req.id
     const [verify] = await repository.findById(_id)
     if (!verify) {
       return res.boom.notFound()
@@ -50,7 +52,7 @@ class UserController {
   }
 
   async activate(req, res) {
-    const _id = req.params.id
+    const _id = req.id
     const [verify] = await repository.findById(_id)
     if (!verify) {
       return res.boom.notFound()

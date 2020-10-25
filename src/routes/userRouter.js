@@ -2,7 +2,7 @@ const express = require('express')
 const UserController = require('../controllers/userController')
 const { celebrate, Joi, erros, Segments } = require('celebrate')
 const { REQUEST_VALIDATOR_USER } = require('../utils/validators')
-
+const authMiddleware = require('../middleware/auth')
 const userRouter = express.Router()
 
 // POST
@@ -15,12 +15,11 @@ userRouter.post(
 )
 
 // GET
-userRouter.get('/user', UserController.getByEmail)
-userRouter.get('/user/:id', UserController.getById)
+userRouter.get('/user', authMiddleware, UserController.getById)
 
 // PATCH
-userRouter.patch('/user/:id/deactivate', UserController.deactivate)
-userRouter.patch('/user/:id/activate', UserController.activate)
+userRouter.patch('/user/deactivate', authMiddleware, UserController.deactivate)
+userRouter.patch('/user/activate', authMiddleware, UserController.activate)
 
 // PUT
 userRouter.put('/user/:id', UserController.update)
