@@ -35,7 +35,6 @@ describe('Case test Repository user', function () {
   it('Create a user repository', async () => {
     const user = await User(USER_MOCK)
     const result = await _UserRepository.create(user)
-    console.log(result.statusCode)
     exists(result.id)
   })
 

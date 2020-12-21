@@ -18,12 +18,9 @@ class AuthController {
     const _password = req.body.password
     const [login] = await repository.findByEmail(_email)
 
-    console.log('email ==>>>', _email)
-    console.log('password ==>>>', _password)
     if (!login) {
       return res.boom.badRequest('Usuario não existe')
     }
-    console.log('login ==>>>', login)
 
     const result = await passwordHelper.compare(_password, login.password)
 

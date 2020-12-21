@@ -3,6 +3,7 @@ const JwtHelper = require('../utils/jwtHelper')
 function authMiddleware(req, res, next) {
   const token = req.headers['x-access-token']
 
+  console.log('token backend', token)
   if (!token) {
     return res.boom.unauthorized('Acesso negado')
   }

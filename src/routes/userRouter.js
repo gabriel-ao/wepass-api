@@ -22,7 +22,7 @@ userRouter.patch('/user/deactivate', authMiddleware, UserController.deactivate)
 userRouter.patch('/user/activate', authMiddleware, UserController.activate)
 
 // PUT
-userRouter.put('/user/:id', UserController.update)
+userRouter.put('/user', authMiddleware, UserController.update)
 
 // DELETE
 userRouter.delete('/user/:id', UserController.delete)
