@@ -9,7 +9,8 @@ const repository = new EventRepository(connection)
 
 class EventController {
   async create(req, res) {
-    const event = entity(req.body)
+    const dataEvent = { ...req.body, userId: req.id }
+    const event = entity(dataEvent)
     const response = await repository.create(event)
     res.json(response)
   }

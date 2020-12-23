@@ -26,7 +26,7 @@ const ENTITY_VALIDATOR_EVENT = Joi.object().keys({
   price: Joi.number().min(0).required(),
   category: Joi.string().required(),
   describe: Joi.string().min(8).max(1000).required(),
-  userId: Joi.string().required(),
+  userId: Joi.string(),
   active: Joi.boolean(),
 })
 
@@ -36,7 +36,7 @@ const REQUEST_VALIDATOR_EVENT = Joi.object().keys({
   price: Joi.number().min(0).required(),
   category: Joi.string().required(),
   describe: Joi.string().min(8).max(1000).required(),
-  userId: Joi.string().required(),
+  userId: Joi.string(),
   active: Joi.boolean(),
 })
 

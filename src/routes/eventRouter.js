@@ -11,6 +11,7 @@ eventRouter.post(
   celebrate({
     [Segments.BODY]: REQUEST_VALIDATOR_EVENT,
   }),
+  authMiddleware,
   EventController.create
 )
 
