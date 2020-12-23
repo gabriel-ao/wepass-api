@@ -63,7 +63,8 @@ class UserController {
 
   // PUT
   async update(req, res) {
-    const _id = req.params.id
+    console.log('backend chegou update')
+    const _id = req.id
     const data = req.body
     const [verify] = await repository.findById(_id)
     if (!verify) {

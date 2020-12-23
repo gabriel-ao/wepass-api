@@ -19,6 +19,27 @@ const REQUEST_VALIDATOR_USER = Joi.object().keys({
   active: Joi.boolean(),
 })
 
+//EVENT
+const ENTITY_VALIDATOR_EVENT = Joi.object().keys({
+  title: Joi.string().min(3).max(40).required(),
+  dataEvent: Joi.date().required(),
+  price: Joi.number().min(0).required(),
+  category: Joi.string().required(),
+  describe: Joi.string().min(8).max(1000).required(),
+  userId: Joi.string().required(),
+  active: Joi.boolean(),
+})
+
+const REQUEST_VALIDATOR_EVENT = Joi.object().keys({
+  title: Joi.string().min(3).max(40).required(),
+  dataEvent: Joi.date().required(),
+  price: Joi.number().min(0).required(),
+  category: Joi.string().required(),
+  describe: Joi.string().min(8).max(1000).required(),
+  userId: Joi.string().required(),
+  active: Joi.boolean(),
+})
+
 // AUTH
 const REQUEST_VALIDATOR_AUTH = Joi.object().keys({
   email: Joi.string().email().required(),
@@ -28,5 +49,7 @@ const REQUEST_VALIDATOR_AUTH = Joi.object().keys({
 module.exports = {
   ENTITY_VALIDATOR_USER,
   REQUEST_VALIDATOR_USER,
+  ENTITY_VALIDATOR_EVENT,
+  REQUEST_VALIDATOR_EVENT,
   REQUEST_VALIDATOR_AUTH,
 }

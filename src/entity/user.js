@@ -1,4 +1,3 @@
-const { required } = require('@hapi/joi')
 const PasswordHelper = require('../utils/PasswordHelper')
 const { ENTITY_VALIDATOR_USER } = require('../utils/validators')
 
