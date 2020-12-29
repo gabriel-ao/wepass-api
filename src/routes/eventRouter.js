@@ -15,4 +15,7 @@ eventRouter.post(
   EventController.create
 )
 
+// GET
+eventRouter.get('/event', authMiddleware, EventController.getById)
+
 module.exports = eventRouter
