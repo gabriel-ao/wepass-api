@@ -29,6 +29,32 @@ class EventController {
     })
     res.json(response)
   }
+
+  async getAll(req, res) {
+    const _id = req.id
+    const [verify] = await repositoryUser.findById(_id)
+    if (!verify) {
+      return res.boom.notFound()
+    }
+
+    const response = await repository.findAll()
+    res.json(response)
+  }
+
+  async delete(req, res) {
+    const _id = req.params.id
+    console.log('chegou backend delete event', _id)
+
+    const [verify] = await repository.findById(_id)
+    if (!verify) {
+      return res.boom.notFound()
+    }
+
+    const deleted = await repository.delete(_id)
+    console.log('retorno deleted', deleted)
+
+    res.json(deleted)
+  }
 }
 
 module.exports = new EventController()

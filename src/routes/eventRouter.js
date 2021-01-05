@@ -17,5 +17,9 @@ eventRouter.post(
 
 // GET
 eventRouter.get('/event', authMiddleware, EventController.getById)
+eventRouter.get('/events', authMiddleware, EventController.getAll)
+
+// DELETE
+eventRouter.delete('/event/:id', EventController.delete)
 
 module.exports = eventRouter
